@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 var URL = 'https://api.bugsnag.com';
 var PROJECT_ID = process.env.BUGSNAG_PROJECT_ID;
 var auth = {
