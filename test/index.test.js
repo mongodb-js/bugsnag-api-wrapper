@@ -37,8 +37,10 @@ describe('bugsnag api wrapper testing', function() {
       if (err) return done(err);
       expect(res).to.be.an('object');
       expect(res.__HighlandStream__).to.be.true;
+      var dataCounter = 0;
       res.on('data', function(data) {
-        data.to.equal(testVars.errorsOutput);
+        data.to.equal(testVars.errorsOutput[dataCounter]);
+        dataCounter++;
       });
       done();
     });
@@ -57,8 +59,10 @@ describe('bugsnag api wrapper testing', function() {
       if (err) return done(err);
       expect(res).to.be.an('object');
       expect(res.__HighlandStream__).to.be.true;
+      var dataCounter = 0;
       res.on('data', function(data) {
-        data.to.equal(testVars.eventsOutput);
+        data.to.equal(testVars.eventsOutput[dataCounter]);
+        dataCounter++;
       });
       done();
     });
