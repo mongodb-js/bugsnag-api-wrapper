@@ -83,11 +83,13 @@ describe('bugsnag api wrapper', function() {
   describe('functional testing', function() {
     it('getErrors with querystring should return a stream', function(done) {
       var querystring = {
-        'release_stages': 'production',
-        'app_versions': 'eq1.0.1',
-        'severity': 'error',
-        'status': 'fixed',
-        'per_page': 50
+        'per_page': 50,
+        'filters': {
+          'error.status': 'fixed',
+          'event.severity': 'error',
+          'app.release_stage': 'production',
+          'version.seen_in': '1.0.1'
+        }
       };
 
       bugsnagApiWrapper.getErrors(querystring, function(err, res) {
@@ -96,7 +98,7 @@ describe('bugsnag api wrapper', function() {
         expect(res.__HighlandStream__).to.be.true;
         res.on('data', function(data) {
           expect(data).to.include.keys('id');
-          expect(data).to.include.keys('last_message');
+          expect(data).to.include.keys('last_seen');
           expect(data.severity).to.equal('error');
         });
         res.on('end', function() {
@@ -108,8 +110,10 @@ describe('bugsnag api wrapper', function() {
     it('getEvents with querystring should return a stream', function(done) {
       var querystring = {
         'per_page': 20,
-        'start_time': '2016-07-01T12:00:00Z',
-        'end_time': '2016-07-01T12:15:00Z'
+        'filters': {
+          'event.since': '2016-07-01T12:00:00Z',
+          'event.before': '2016-07-01T12:15:00Z'
+        }
       };
 
       bugsnagApiWrapper.getEvents(querystring, function(err, res) {
