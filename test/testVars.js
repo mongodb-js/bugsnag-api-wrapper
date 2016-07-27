@@ -3,6 +3,7 @@ require('dotenv').config();
 var URL = 'https://api.bugsnag.com';
 var PROJECT_ID = process.env.BUGSNAG_PROJECT_ID;
 var auth = {
+  'X-Version': 2,
   'Authorization': 'token ' + process.env.BUGSNAG_API_KEY
 };
 
@@ -24,28 +25,37 @@ module.exports = {
   errorsOutput: [
     {
       'id': '518031bcd775355c48a1cd4e',
-      'class': 'NoMethodError',
-      'last_message': 'undefined method "name" for nil:NilClass',
-      'last_context': 'mailer#admin',
-      'resolved': false,
-      'occurrences': 12,
-      'users_affected': 13,
-      'contexts': {
-        'mailer#admin': 12
+      'events': 456,
+      'users': 123,
+      'first_seen': '2013-04-30T21:03:56Z',
+      'last_seen': '2013-04-30T21:03:56Z',
+      'status': 'snoozed',
+      'snooze_conditions': {
+        'dimension': 'time',
+        'target': '2013-04-30T21:03:56Z',
+        'input': 21600
       },
-      'release_stages': {
-        'production': 12
+      'assigned_user': {
+        'id': '518031bcd775355c48a1cd4e',
+        'name': 'TODO'
       },
-      'app_versions': {
-        '1.0.0': 20
+      'linked_issue': {
+        'id': 123,
+        'url': 'http://google.com',
+        'system': 'GitHub Issues'
       },
-      'first_received': '2013-04-30T21:03:56Z',
-      'last_received': '2013-07-29T10:42:05Z',
-      'comments_url': 'https://api.bugsnag.com/errors/518031bcd775355c48a1cd4e/comments',
-      'events_url': 'https://api.bugsnag.com/errors/518031bcd775355c48a1cd4e/events',
-      'html_url': 'https://bugsnag.com/errors/518031bcd775355c48a1cd4e',
-      'url': 'https://api.bugsnag.com/errors/518031bcd775355c48a1cd4e',
-      'most_recent_event': {}
+      'trend': [
+        ['2015-05-27T00:00:00.000Z', 123],
+        ['2015-05-27T00:00:00.000Z', 456]
+      ],
+      'latest_event': {
+        'id': '551c5888093024ce168bdfca',
+        'error_class': 'Moped::Errors::QueryFailure',
+        'message': 'Something bad happened',
+        'context': 'api/accounts#index',
+        'release_stage': 'production',
+        'severity': 'error'
+      }
     }
   ],
 
