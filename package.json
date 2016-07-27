@@ -1,5 +1,5 @@
 {
-  "name": "bugsnag-api-wrapper",
+  "name": "mongodb-js-bugsnag",
   "description": "Light wrapper to access bugsnag API and abstract api-specific functions",
   "version": "0.1.0",
   "scripts": {
